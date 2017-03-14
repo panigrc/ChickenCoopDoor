@@ -31,11 +31,17 @@ By tapping both limit switches simultaneusly the door will get in the Test "phas
 
 ### Setting the Time
 By connecting to the Serial and Pressing 'T' and then the UTC timestamp you can set the time of the RTC.
+
 By pressing 'A' and then + or - millis you can adjust the time accordingly.
+
+### Demo
+
+[You can watch a demo video here](https://www.youtube.com/watch?v=tN1-I40H8xY)
 
 ### Future Updates
 
 I would like to update the Real Time Clock to use the DS3231 which is more accurate and has more precission than the DS1307 which has a significant time deviation after some days. The DS3231 has an internal thermistor which adjusts the time according to the temperature, which the DS1307 hasn't.
+
 Also the Alarm feature is commented out because I didn't use it. The theory was to add an extra limit switch on the door and a buzzer so it would have an alarm functionality whenever the door opens in the chicken coop door closing time (at night basically).
 
 ### License
