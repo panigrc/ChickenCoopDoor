@@ -7,7 +7,6 @@
 #include <Wire.h>
 #include <DS1307RTC.h>
 #include "Flasher.h"
-//#include "Buzzer.h"
 #include <Time.h>
 #include <Timezone.h>
 
@@ -66,12 +65,6 @@ byte buttonStateTop	= 0;
 const byte buttonBottom = A2;
 byte buttonStateBottom = 0;
 
-// Alarm system
-
-//Buzzer alarmBuzzer(3); // PWM
-//const byte buttonAlarm = 4;
-//byte buttonAlarmState = 0;
-
 // Timezone
 
 TimeChangeRule grDST = {"EEST", Last, Sun, Mar, 3, 180};    //Daylight time (summer)
@@ -91,7 +84,7 @@ void setup()
   if (RTC.get())
   {
     rtcError = false;
-    
+
     setSyncProvider(RTC.get); // the function to get the time from the RTC
     setSyncInterval(3600); // re-sync every seconds
     local_time = grTZ.toLocal(now()); // get the local time
@@ -115,9 +108,6 @@ void setup()
   pinMode(buttonTop, INPUT);
   pinMode(buttonBottom, INPUT);
 
-  // Alarm setup
-  //pinMode(buttonAlarm, INPUT);
-
 }// END setup
 
 
@@ -127,11 +117,9 @@ void loop()
   // if both buttons are pressed test the door
   testDoor();
 
-  //alarm();
-
   if (rtcError == false) // if rtc is working
   {
-    // if time is set, doorLoop 
+    // if time is set, doorLoop
     if (timeStatus() == timeSet)
     {
       local_time = grTZ.toLocal(now()); // get the local time
@@ -146,11 +134,10 @@ void loop()
     else
     {
       serialSetTime();
-    }  
+    }
   }
 
   statusLED.Update();
-  //alarmBuzzer.Update();
 
 }// END loop
 
@@ -216,7 +203,7 @@ void doorLoop()
   {
     //digitalWrite(statusLED, HIGH);
   }
-  
+
 }// END doorLoop
 
 
@@ -247,7 +234,7 @@ boolean setDoorMotor(int speed, boolean reverse)
 // happens only when both terminal buttons are pressed
 void testDoor()
 {
-  
+
   buttonStateTop = digitalRead(buttonTop);
   buttonStateBottom = digitalRead(buttonBottom);
 
@@ -300,7 +287,7 @@ void testDoor()
 
     //delay(3000);
   }
-  
+
 } // END testDoor
 
 
@@ -345,7 +332,7 @@ time_t serialAdjustTime(time_t pctime)
     delay(10);
 
     char c = toupper(Serial.read());
-    
+
 
 
     if ( c == 'A' )
@@ -357,9 +344,9 @@ time_t serialAdjustTime(time_t pctime)
      if (Serial.available() > 0) time_adjust = Serial.parseInt();
   }
       Serial.println(time_adjust);
-  
+
       pctime += time_adjust;
-      
+
       RTC.set(pctime + time_adjust);
       setTime(pctime + time_adjust);
       return pctime;   // Sync Arduino clock to the time received on the serial port
@@ -371,7 +358,7 @@ time_t serialAdjustTime(time_t pctime)
 // prints time in Serial
 void serialDisplayTime()
 {
-  
+
   Serial.print("UTC time: ");
   Serial.print(timeToString(now()));
   Serial.print("  Local time: ");
@@ -388,17 +375,5 @@ char * timeToString(time_t t)
   sprintf(str, "%02d:%02d %02d/%02d/%d", hour(t), minute(t), day(t), month(t), year(t));
 
   return str;
-  
+
 } //END timeToString
-
-
-/*
-  void alarm()
-  {
-	buttonAlarmState = digitalRead(buttonAlarm);
-	if (buttonAlarmState == HIGH && now.hour() > 0 && now.hour() < 7 && alarmBuzzer.Queue() == 0)
-	{
-		alarmBuzzer.Buzz(100, 100, 100, 255, 130);
-	}
-  }
-*/
