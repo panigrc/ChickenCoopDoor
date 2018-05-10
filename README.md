@@ -21,13 +21,15 @@ All the other libraries can be found and downloaded from the library management 
 ### Hardware Used
 
 * Arduino Nano
-* L298N Dual H Bridge DC Stepper Motor Drive Controller Board Module for Arduino
+* L293D Dual H Bridge, but I recommend a L298N Dual H Bridge DC Stepper Motor Drive Controller Board Module for Arduino
 * Real Time Clock Module For AVR ARM PIC New I2C RTC DS1307 AT24C32
 * 2x LEDs
 * 2x Tact Switch KW11-3Z 5A 250V Microswitch 3PIN Buckle Hot (Limit Switches)
 
+You can find a more detailed list in the [Bill of Materials](MATERIALS.md)
+
 ### Test Procedure
-By tapping both limit switches simultaneusly the door will get in the Test "phase". The 2nd LED will start blinking so many times as the current hour and the door will do a complete opening or closing cycle.
+By tapping both limit switches simultaneously the door will get in the Test "phase". The 2nd LED will start blinking so many times as the current hour and the door will do a complete opening or closing cycle.
 
 ### Setting the Time
 By connecting to the Serial and Pressing 'T' and then the UTC timestamp you can set the time of the RTC.
@@ -37,6 +39,9 @@ By pressing 'A' and then + or - millis you can adjust the time accordingly.
 ### Demo
 
 [You can watch a demo video here](https://www.youtube.com/watch?v=tN1-I40H8xY)
+
+My chicken coop door was also featured at the **Maker Faire Athens 2017**.
+More details about it in my blog post here http://nikospapagiannopoulos.com/chickencoopdoor
 
 ### Future Updates
 
