@@ -10,9 +10,6 @@ ChickenCoopDoor is an Arduino project which aims to the automation of chicken co
   - Read, set and adjust the time from the Serial with your PC
   - Timezone usage, in order to adjust the time according to the daylight savings time
 
-### Changelog
-  - 1.0 Initial Commit
-
 ### External Libraries Used
 All the other libraries can be found and downloaded from the library management of the Arduino IDE.
 
@@ -27,6 +24,10 @@ All the other libraries can be found and downloaded from the library management 
 * 2x Tact Switch KW11-3Z 5A 250V Microswitch 3PIN Buckle Hot (Limit Switches)
 
 You can find a more detailed list in the [Bill of Materials](MATERIALS.md)
+
+### Breadboard Schematic
+
+![Breadboard Schematic](chickencoopdoor_schematic.png)
 
 ### Test Procedure
 By tapping both limit switches simultaneously the door will get in the Test "phase". The 2nd LED will start blinking so many times as the current hour and the door will do a complete opening or closing cycle.
